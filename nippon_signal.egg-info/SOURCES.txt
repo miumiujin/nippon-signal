@@ -9,6 +9,7 @@ nippon_signal/feeds.py
 nippon_signal/models.py
 nippon_signal/pipeline.py
 nippon_signal/score.py
+nippon_signal/ui_helpers.py
 nippon_signal.egg-info/PKG-INFO
 nippon_signal.egg-info/SOURCES.txt
 nippon_signal.egg-info/dependency_links.txt

@@ -28,14 +28,14 @@ def _term_count(text: str) -> int:
     return count
 
 
-def score_signal(
+def score_breakdown(
     title: str,
     summary: str,
     published_at: datetime,
     category: str,
     source_weight: float = 1.0,
     now: datetime | None = None,
-) -> float:
+) -> dict[str, float]:
     now = now or datetime.now(timezone.utc)
     if published_at.tzinfo is None:
         published_at = published_at.replace(tzinfo=timezone.utc)
@@ -53,12 +53,37 @@ def score_signal(
     else:
         recency = 6
 
-    term_score = min(30, _term_count(f"{title} {summary}") * 7.5)
+    opportunity = min(30.0, _term_count(f"{title} {summary}") * 7.5)
     category_score = (
-        20 if category in HIGH_SIGNAL_CATEGORIES
-        else 14 if category in {"XR", "Consumer Tech"}
-        else 8
+        20.0 if category in HIGH_SIGNAL_CATEGORIES
+        else 14.0 if category in {"XR", "Consumer Tech"}
+        else 8.0
     )
-    source_score = max(0.0, min(15.0, 15.0 * source_weight))
+    source = max(0.0, min(15.0, 15.0 * source_weight))
+    total = min(100.0, recency + opportunity + category_score + source)
 
-    return round(min(100.0, recency + term_score + category_score + source_score), 1)
+    return {
+        "recency": float(recency),
+        "opportunity": float(opportunity),
+        "category": float(category_score),
+        "source": float(source),
+        "total": round(total, 1),
+    }
+
+
+def score_signal(
+    title: str,
+    summary: str,
+    published_at: datetime,
+    category: str,
+    source_weight: float = 1.0,
+    now: datetime | None = None,
+) -> float:
+    return score_breakdown(
+        title,
+        summary,
+        published_at,
+        category,
+        source_weight=source_weight,
+        now=now,
+    )["total"]

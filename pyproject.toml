@@ -17,6 +17,8 @@ dependencies = [
   "rich>=13.9.0",
   "streamlit>=1.39.0",
   "pandas>=2.2.0",
+  "deep-translator>=1.11.4",
+  "opencc-python-reimplemented>=0.1.7",
 ]
 
 [project.optional-dependencies]

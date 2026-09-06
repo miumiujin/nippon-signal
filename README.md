@@ -187,3 +187,55 @@ That makes this an AI/data-product engineering case study rather than a generic 
 ## License
 
 MIT for project code. Source-site content remains subject to each publisher's terms.
+
+
+## v0.1.1 UI refresh
+
+This version upgrades the dashboard with:
+
+- Japanese-inspired visual styling
+- Better signal cards
+- Traditional Chinese translation support
+- Sidebar browsing controls
+
+To use translation:
+
+```bash
+pip install -e ".[dev]"
+```
+
+Then run:
+
+```bash
+streamlit run app.py
+```
+
+If the translator service is temporarily unavailable, the app will still show the original Japanese title and summary.
+
+
+## v0.1.2 — Deploy-ready UI
+
+Changes:
+
+- Fixed raw HTML accidentally appearing in the Streamlit page
+- Source-aware primary category
+- Multi-category tags
+- Explainable Signal Score breakdown
+- Free Japanese → Traditional Chinese best-effort translation
+- Translation provider errors are hidden from end users
+- Automatic database bootstrap when deployed without a local SQLite file
+- Manual **Refresh 最新資料** button
+- `requirements.txt` and `.streamlit/config.toml` for Streamlit Community Cloud
+
+### Streamlit Community Cloud
+
+Deploy settings:
+
+```text
+Repository: your-user/nippon-signal
+Branch: main
+Main file path: app.py
+```
+
+The SQLite database is intentionally not committed. On a fresh deployment,
+the app attempts to ingest feeds and build the database at runtime.
