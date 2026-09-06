@@ -1,0 +1,25 @@
+sources:
+  - name: ITmedia AI+
+    url: https://rss.itmedia.co.jp/rss/2.0/aiplus.xml
+    weight: 1.0
+    default_category: AI
+
+  - name: ITmedia NEWS Science & Technology
+    url: https://rss.itmedia.co.jp/rss/2.0/news_technology.xml
+    weight: 0.95
+    default_category: Other
+
+  - name: MONOist Robotics
+    url: https://rss.itmedia.co.jp/rss/2.0/mn_robot.xml
+    weight: 1.0
+    default_category: Robotics
+
+  - name: Smart Japan
+    url: https://rss.itmedia.co.jp/rss/2.0/smartjapan.xml
+    weight: 0.95
+    default_category: Energy
+
+  - name: Mogura VR
+    url: https://www.moguravr.com/category/metaverse-news/feed
+    weight: 0.85
+    default_category: XR
